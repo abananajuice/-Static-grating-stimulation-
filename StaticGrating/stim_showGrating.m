@@ -8,7 +8,26 @@ orientations = [0:30:150]; % 运动的方向
 f = 0.04; % 空间频率
 O_index = randperm(length(orientations));
 
+
+%% 生成标签结果并保存
 len_oris = length(orientations);
+label = zeros(numCycles*len_oris*trials,2);
+
+label(:,2) = f;
+i_ori = 1;
+
+for t = 1:trials
+    for i = 1:len_oris  %% 朝向的数目
+        
+        % 显示刺激
+        for j = 1:numCycles
+            label(i_ori,1) = orientations(O_index(i));
+            i_ori=i_ori+1;
+        end
+    end
+end
+
+save("label"+datestr(now,30)+".mat",'label');
 
 %% 屏幕配置
 
@@ -48,6 +67,7 @@ for t = 1:trials
         for j = 1:numCycles
             
             %             for ss = 1:60*cycleDuration
+            % grating 按0-180顺序存储着不同朝向光栅
             Screen('DrawTexture', window, grating(O_index(i)));
             Screen('Flip', window);
             WaitSecs(cycleDuration);
