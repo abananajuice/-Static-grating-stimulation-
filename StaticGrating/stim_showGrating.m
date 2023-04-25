@@ -4,7 +4,11 @@ function stim_showGrating(trials,cycleDuration,interstimulusInterval)
 
 %% 参数设置
 numCycles = 3; % 刺激呈现的周期数
-% directions = [0:30:330, 360]; % 运动的方向
+orientations = [0:30:150]; % 运动的方向
+f = 0.04; % 空间频率
+O_index = randperm(length(orientations));
+
+len_oris = length(orientations);
 
 %% 屏幕配置
 
@@ -24,7 +28,7 @@ Screen(window,'FillRect', grey);
 Screen(window, 'Flip');
 
 % 生成刺激
-grating = GenerateGrating(window);
+grating = GenerateGrating(window,f,orientations);
 
 %   object             = io64;
 %   status             = io64(object);
@@ -38,13 +42,13 @@ HideCursor;
 
 
 for t = 1:trials
-    for i = 1:6  %% 朝向的数目
+    for i = 1:len_oris  %% 朝向的数目
         
         % 显示刺激
         for j = 1:numCycles
             
             %             for ss = 1:60*cycleDuration
-            Screen('DrawTexture', window, grating(i));
+            Screen('DrawTexture', window, grating(O_index(i)));
             Screen('Flip', window);
             WaitSecs(cycleDuration);
             %         io64(object,16424,1); % 设定打标
