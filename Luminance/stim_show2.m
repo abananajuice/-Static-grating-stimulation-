@@ -10,6 +10,7 @@ trials=stim.trials;%%重复次数
     times = [5 15 50 100];
     luminaries = round( rand(1,trials) * 255); 
     time_index = round( rand(1,trials) * 3 +1);
+    % 每个亮度持续的时间及其亮度值
     save("luminaries_restnone.mat",'luminaries');
     time_cumsum = [];
     for i = 1:trials

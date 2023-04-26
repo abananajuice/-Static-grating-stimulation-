@@ -2,7 +2,7 @@
 %STIM_SHOW2 亮度刺激实验，并在每次刺激之后添加休息
 
 trials=stim.trials;%%重复次数
-one_color_time=stim.one_color_time;
+
 
 %% 生成刺激模式
 
@@ -30,9 +30,7 @@ one_color_time=stim.one_color_time;
     [window,windowRect] = Screen(screenNumber,'OpenWindow',0,[],[],2); % 打开屏幕
     WaitSecs(.05);
     
-% Show the movie, first forwards, then backwards.  We don't need offscreen
-    % windows as in OS 9.  FillOval is now fast enough to draw ovals during the
-    % animation.
+
     black              = BlackIndex(window);
     white              = WhiteIndex(window);
     grey               = (white+black)/2;
@@ -84,8 +82,8 @@ one_color_time=stim.one_color_time;
             break;
         end
     end
-    %this is strange, raising the priority seems to cause the first call to
-    %flip to return immediatly.  Needs investigation.
+
+    
     Priority(0);
     frameRate=1/median(s1Diffs);
     frames1=sum(s1Diffs)*frameRate-length(s1Diffs);
@@ -97,15 +95,6 @@ one_color_time=stim.one_color_time;
         T=sprintf('The movie was shown twice, running over by %.0f frames in the first .',frames1);
     end
     fprintf('%s\n',WrapString(T));
-    %savemat(PATHFile,trials,stim_ser);
-% catch
-%     %this "catch" section executes in case of an error in the "try" section
-%     %above.  Importantly, it closes the onscreen window if its open.
-%     sca;
-%     ShowCursor;
-%     Priority(0);
-%     psychrethrow(psychlasterror);
-% end % try..catch
 
 
 end

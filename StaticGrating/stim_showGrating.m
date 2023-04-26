@@ -1,5 +1,6 @@
 function stim_showGrating(trials,cycleDuration,interstimulusInterval)
-% STIM_SHOWGRATING 光栅刺激实验
+% stim_showGrating
+% 光栅刺激实验
 
 
 %% 参数设置
@@ -47,14 +48,21 @@ Screen(window,'FillRect', grey);
 Screen(window, 'Flip');
 
 % 生成刺激
-grating = GenerateGrating(window,f,orientations);
-
+disp("生成刺激中...");
+% if(exist(".\grating.mat","file"))
+%     disp("发现存在刺激文件");
+%     load(".\grating.mat");
+% else
+    grating = GenerateGrating(window,f,orientations);
+    
+% end
+disp("刺激生成完成！")
 %   object             = io64;
 %   status             = io64(object);
 %   io64(object,16424,0);
 priorityLevel      = MaxPriority(window);
 Priority(priorityLevel);
-HideCursor;
+% HideCursor;
 %     config_io;
 
 %% 刺激呈现

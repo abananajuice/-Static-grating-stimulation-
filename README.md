@@ -22,10 +22,11 @@ stim.trials：实验次数
 
 ### 运行
 
-运行程序```./StaticGrating/start.m```
-
+运行程序```./StaticGrating/start.m```  
+stim_show_rest 在每次刺激之后添加休息
 
 ### 参数设置
+
 
 #### start.m 
 
@@ -48,3 +49,4 @@ orientations：光栅的朝向
 c:光栅的对比度  
 
 生成的纹理默认是1920x1080分辨率的屏幕，如分辨率不同可以修改```[x, y] = meshgrid(-960:959,539:-1:-540);```中的参数。
+

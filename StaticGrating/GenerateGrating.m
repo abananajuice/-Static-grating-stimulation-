@@ -1,10 +1,6 @@
 function grating = GenerateGrating(window,f,orientations)
 %GENERATEGRATING 生成光栅矩阵并制作成纹理
 
-% if(exist(".\grating.mat","file"))
-%     pp=load(".\grating.mat");
-%     grating = pp(1);
-% else
     c = 0.95;  % 对比度
     
     [x, y] = meshgrid(-960:959,539:-1:-540);
@@ -22,5 +18,5 @@ function grating = GenerateGrating(window,f,orientations)
     
 %     save("grating.mat",'grating');
     
-% end
+
 end
